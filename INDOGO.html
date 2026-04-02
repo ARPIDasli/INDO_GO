@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDO GO VOICE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            /* Background foto Roblox gaming */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
+                        url('12.jpg') center/cover no-repeat fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Overlay gelap untuk readability */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.4));
+            z-index: 1;
+            animation: overlayPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes overlayPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.6; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* RGB Rainbow Effect untuk INDO GO - FIXED */
+        h1 {
+            font-size: 2.8em;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            background: linear-gradient(-45deg, 
+                #ff0000, #ff7300, #fffb00, #00ff00, 
+                #00ffff, #4b00ff, #ff00ff, #ff0000);
+            background-size: 600% 600%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rgbShift 2s ease-in-out infinite;
+            text-shadow: 
+                0 0 10px rgba(255, 0, 0, 0.8),
+                0 0 20px rgba(255, 115, 0, 0.6),
+                0 0 30px rgba(255, 255, 0, 0.4);
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes rgbShift {
+            0%, 100% { background-position: 0% 50%; }
+            16% { background-position: 100% 50%; }
+            33% { background-position: 100% 100%; }
+            50% { background-position: 0% 100%; }
+            66% { background-position: 0% 50%; }
+            83% { background-position: 100% 50%; }
+        }
+
+        /* HAPUS ::before YANG MENYEBABKAN DUPLIKAT */
+
+        .subtitle {
+            color: #444;
+            font-size: 1.4em;
+            margin-bottom: 50px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .btn {
+            padding: 20px 45px;
+            font-size: 1.4em;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-play {
+            background: linear-gradient(45deg, #00d4aa, #00a085);
+            color: white;
+            box-shadow: 0 12px 30px rgba(0, 212, 170, 0.5);
+        }
+
+        .btn-play:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 212, 170, 0.7);
+        }
+
+        .btn-guide {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .btn-guide:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.7);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Partikel effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 45px 25px;
+                margin: 20px;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+                letter-spacing: 1px;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .btn {
+                padding: 18px 35px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <h1>INDO GO</h1>
+        <p class="subtitle">YUK BERMAIN!</p>
+        
+        <div class="btn-group">
+            <a href="https://www.roblox.com/share?code=752427463628dd48a876ae45b89b6381&type=ExperienceDetails&stamp=1774353715766" 
+               target="_blank" class="btn btn-play" onclick="playSound()">
+                ▶️ PLAY NOW
+            </a>
+            
+            <a href="https://www.roblox.com/games/119119777970806/INDO-GO" 
+               target="_blank" class="btn btn-guide" onclick="playSound()">
+                📖 GUIDE 
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Efek suara klik
+        function playSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        // Efek klik tambahan
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Partikel effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('particles').appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 7000);
+        }
+
+        // Buat partikel terus menerus
+        setInterval(createParticle, 300);
+    </script>
+</body>
+</html>
